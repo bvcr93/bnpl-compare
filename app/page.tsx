@@ -1,103 +1,76 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen bg-gray-50 px-6 py-12 text-gray-800">
+      {/* Hero Section */}
+      <section className="text-center mb-16">
+        <h1 className="text-4xl font-bold mb-4">Compare BNPL Providers</h1>
+        <p className="text-lg mb-6">
+          Find the best Buy Now, Pay Later service that fits your needs.
+        </p>
+        <Button className="text-white text-lg">Get Started</Button>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      {/* Features Section */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        {[
+          {
+            title: "Flexible Payments",
+            desc: "Compare payment terms from top providers."
+          },
+          {
+            title: "Low/No Interest",
+            desc: "Find services offering 0% interest options."
+          },
+          {
+            title: "Fast Approval",
+            desc: "Get instant decisions and fast onboarding."
+          }
+        ].map((feature, index) => (
+          <Card key={index} className="shadow-sm">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p>{feature.desc}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+
+      {/* Comparison Table */}
+      <section className="overflow-x-auto mb-16">
+        <table className="w-full border border-gray-200 text-left text-sm">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="p-4 border">Provider</th>
+              <th className="p-4 border">Interest Rate</th>
+              <th className="p-4 border">Max Limit</th>
+              <th className="p-4 border">Approval Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ["Afterpay", "0%", "$2,000", "Instant"],
+              ["Klarna", "0-19.99%", "$10,000", "Minutes"],
+              ["Affirm", "0-30%", "$17,500", "Minutes"],
+            ].map((row, i) => (
+              <tr key={i} className="border-t">
+                {row.map((cell, j) => (
+                  <td key={j} className="p-4 border">{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      {/* Call to Action */}
+      <section className="text-center">
+        <h2 className="text-2xl font-semibold mb-4">Ready to Choose?</h2>
+        <p className="mb-6">Start comparing and make the best financial choice today.</p>
+        <Button className="text-white text-lg">Compare Now</Button>
+      </section>
+    </main>
   );
 }
